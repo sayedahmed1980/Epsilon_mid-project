@@ -80,7 +80,7 @@ with tab2:
     
     with tab2_col1:
         
-        applies = df.groupby(['job_title','work_type'])[['applies']].sum().sort_values('applies', ascending= False).reset_index().head(500)
+        applies = df.groupby(['job_title','work_type'])[['applies']].sum().sort_values('applies', ascending= False).reset_index().head(200)
         df_applies = applies[applies['work_type'] == work_type]
         fig= px.bar(df_applies, x= 'job_title', y= 'applies', color= 'applies', barmode ='group', title = f'Job Title {work_type.upper()} Per Applied'.title())
         fig.update_layout(legend_title="Job Applies", showlegend= True)
@@ -107,10 +107,10 @@ with tab3:
         st.subheader('Categorical Descriptive Statistics')
         st.dataframe(cat)
         
-        applies = df.groupby(['job_title','work_type'])[['applies']].sum().sort_values('applies', ascending= False).reset_index().head(200)
+        applies = df.groupby(['job_title','work_type'])[['applies']].sum().sort_values('applies', ascending= False).reset_index().head(20)
         df_applies = applies[applies['work_type'] == work_type]
         fig= px.bar(df_applies, x= 'job_title', y= 'applies', color= 'applies', barmode ='group', title = f'Work Type {work_type.upper()} Per Job Title'.title() )
-        st.plotly_chart(fig, use_container_width= False)
+        st.plotly_chart(fig, use_container_width= True)
         
         applies = df.groupby(['work_type'])[['applies']].sum().sort_values('applies', ascending= False).reset_index()
         fig= px.bar(applies, x= 'work_type', y= 'applies', color= 'work_type', barmode ='group', title = f'Country Name {country_name.upper()} Per Skills'.title() )
